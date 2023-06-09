@@ -19,17 +19,17 @@ import java.io.IOException;
 /**
  * Project name(项目名称)：数据可视化_JFreechart的使用
  * Package(包名): mao
- * Class(类名): Test1
+ * Class(类名): Test2
  * Author(作者）: mao
  * Author QQ：1296193245
  * GitHub：https://github.com/maomao124/
- * Date(创建日期)： 2023/6/8
- * Time(创建时间)： 22:22
+ * Date(创建日期)： 2023/6/9
+ * Time(创建时间)： 20:56
  * Version(版本): 1.0
  * Description(描述)： 无
  */
 
-public class Test1
+public class Test2
 {
     public static void main(String[] args) throws IOException
     {
@@ -41,6 +41,9 @@ public class Test1
         dataset.setValue("第四中学", 958);
         dataset.setValue("第五中学", 5433);
         dataset.setValue("第七中学", 3498);
+        dataset.setValue("第八中学", 2177);
+        dataset.setValue("第九中学", 374);
+        dataset.setValue("第十中学", 3511);
 
 
         StandardChartTheme standardChartTheme = new StandardChartTheme("CN");
@@ -57,10 +60,10 @@ public class Test1
         //参数3  是否开启图例
         //参数4  是否开启工具栏
         //参数5  是否开启url跳转
-        JFreeChart chart = ChartFactory.createPieChart("xx县各学校学生人数", dataset, true, false, false);
+        JFreeChart chart = ChartFactory.createPieChart3D("xx县各学校学生人数", dataset, true, true, true);
         //生成一张图表的图片文件
 
-        String path = "./chart1.png";
+        String path = "./chart2.png";
 
         ChartUtils.saveChartAsPNG(new File(path), chart, 1280, 720);
 
