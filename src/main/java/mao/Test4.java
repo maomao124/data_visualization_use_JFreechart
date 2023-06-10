@@ -5,7 +5,6 @@ import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.StandardChartTheme;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,17 +19,17 @@ import java.io.IOException;
 /**
  * Project name(项目名称)：数据可视化_JFreechart的使用
  * Package(包名): mao
- * Class(类名): Test3
+ * Class(类名): Test4
  * Author(作者）: mao
  * Author QQ：1296193245
  * GitHub：https://github.com/maomao124/
- * Date(创建日期)： 2023/6/9
- * Time(创建时间)： 21:05
+ * Date(创建日期)： 2023/6/10
+ * Time(创建时间)： 0:24
  * Version(版本): 1.0
  * Description(描述)： 无
  */
 
-public class Test3
+public class Test4
 {
     /**
      * 得到int随机
@@ -87,10 +86,10 @@ public class Test3
         //参数3  是否开启图例
         //参数4  是否开启工具栏
         //参数5  是否开启url跳转
-        JFreeChart chart = ChartFactory.createLineChart("xx县各学校学生人数变化", "年", "人数", dataset);
+        JFreeChart chart = ChartFactory.createBarChart("xx县各学校学生人数变化", "年", "人数", dataset);
         //生成一张图表的图片文件
 
-        String path = "./chart3.png";
+        String path = "./chart4.png";
 
         ChartUtils.saveChartAsPNG(new File(path), chart, 1280, 720);
 
