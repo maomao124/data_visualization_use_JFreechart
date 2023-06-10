@@ -2,8 +2,6 @@ package mao;
 
 import org.jfree.chart.*;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -20,17 +18,17 @@ import java.io.IOException;
 /**
  * Project name(项目名称)：数据可视化_JFreechart的使用
  * Package(包名): mao
- * Class(类名): Test5
+ * Class(类名): Test6
  * Author(作者）: mao
  * Author QQ：1296193245
  * GitHub：https://github.com/maomao124/
  * Date(创建日期)： 2023/6/10
- * Time(创建时间)： 14:19
+ * Time(创建时间)： 14:47
  * Version(版本): 1.0
- * Description(描述)： XY图
+ * Description(描述)： 散点图
  */
 
-public class Test5
+public class Test6
 {
     /**
      * 得到int随机
@@ -53,9 +51,9 @@ public class Test5
 
         XYSeries data = new XYSeries("InternetExplorer");
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 1000; i++)
         {
-            data.add(i, getIntRandom(10, 30));
+            data.add(getIntRandom(10, 100), getIntRandom(10, 100));
         }
 
         XYSeriesCollection dataset = new XYSeriesCollection();
@@ -75,13 +73,13 @@ public class Test5
         //参数3  是否开启图例
         //参数4  是否开启工具栏
         //参数5  是否开启url跳转
-        JFreeChart chart = ChartFactory.createXYLineChart("xx县各学校学生人数变化",
+        JFreeChart chart = ChartFactory.createScatterPlot("散点图",
                 "x", "y", dataset
                 , PlotOrientation.VERTICAL,
                 false, true, false);
         //生成一张图表的图片文件
 
-        String path = "./chart5.png";
+        String path = "./chart6.png";
 
 
         ChartUtils.saveChartAsPNG(new File(path), chart, 1280, 720);
