@@ -26,7 +26,7 @@ import java.io.IOException;
  * Date(创建日期)： 2023/6/10
  * Time(创建时间)： 0:24
  * Version(版本): 1.0
- * Description(描述)： 无
+ * Description(描述)： 柱状图
  */
 
 public class Test4
@@ -49,7 +49,7 @@ public class Test4
 
     public static void main(String[] args) throws IOException
     {
-        //构建饼图的数据集
+
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         for (int i = 2012; i <= 2023; i++)

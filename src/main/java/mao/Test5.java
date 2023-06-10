@@ -1,11 +1,11 @@
 package mao;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.StandardChartTheme;
+import org.jfree.chart.*;
+import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,17 +20,17 @@ import java.io.IOException;
 /**
  * Project name(项目名称)：数据可视化_JFreechart的使用
  * Package(包名): mao
- * Class(类名): Test3
+ * Class(类名): Test5
  * Author(作者）: mao
  * Author QQ：1296193245
  * GitHub：https://github.com/maomao124/
- * Date(创建日期)： 2023/6/9
- * Time(创建时间)： 21:05
+ * Date(创建日期)： 2023/6/10
+ * Time(创建时间)： 14:19
  * Version(版本): 1.0
- * Description(描述)： 折线图
+ * Description(描述)： XY图
  */
 
-public class Test3
+public class Test5
 {
     /**
      * 得到int随机
@@ -51,27 +51,15 @@ public class Test3
     public static void main(String[] args) throws IOException
     {
 
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        XYSeries data = new XYSeries("InternetExplorer");
 
-        for (int i = 2012; i <= 2023; i++)
+        for (int i = 0; i < 20; i++)
         {
-            dataset.setValue(getIntRandom(200, 7000), "第一中学", String.valueOf(i));
+            data.add(i, getIntRandom(10, 30));
         }
 
-        for (int i = 2012; i <= 2023; i++)
-        {
-            dataset.setValue(getIntRandom(200, 7000), "第二中学", String.valueOf(i));
-        }
-
-        for (int i = 2012; i <= 2023; i++)
-        {
-            dataset.setValue(getIntRandom(200, 7000), "第四中学", String.valueOf(i));
-        }
-
-        for (int i = 2012; i <= 2023; i++)
-        {
-            dataset.setValue(getIntRandom(200, 7000), "第五中学", String.valueOf(i));
-        }
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(data);
 
         StandardChartTheme standardChartTheme = new StandardChartTheme("CN");
         //设置标题字体
@@ -87,12 +75,25 @@ public class Test3
         //参数3  是否开启图例
         //参数4  是否开启工具栏
         //参数5  是否开启url跳转
-        JFreeChart chart = ChartFactory.createLineChart("xx县各学校学生人数变化", "年", "人数", dataset);
+        JFreeChart chart = ChartFactory.createXYLineChart("xx县各学校学生人数变化",
+                "x", "y", dataset
+                , PlotOrientation.VERTICAL,
+                false, true, false);
         //生成一张图表的图片文件
 
-        String path = "./chart3.png";
+        String path = "./chart6.png";
+
 
         ChartUtils.saveChartAsPNG(new File(path), chart, 1280, 720);
+
+        // 利用awt进行显示
+        ChartFrame chartFrame = new ChartFrame("程序", chart);
+        chartFrame.pack();
+        chartFrame.setVisible(true);
+        chartFrame.setSize(1280, 900);
+        int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;       //获取屏幕宽度
+        int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;     //获取屏幕高度
+        chartFrame.setLocation(screenWidth / 2 - chartFrame.getWidth() / 2, screenHeight / 2 - chartFrame.getHeight() / 2);  //位于屏幕中央
 
         BufferedImage bufferedImage = ImageIO.read(new FileInputStream(path));
         JLabel jLabel = new JLabel();
@@ -100,8 +101,8 @@ public class Test3
 
         JFrame jFrame = new JFrame("图片");                                   //初始化顶层面板
         jFrame.setSize(1280, 900);
-        int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;       //获取屏幕宽度
-        int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;     //获取屏幕高度
+        screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;       //获取屏幕宽度
+        screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;     //获取屏幕高度
         jFrame.setLocation(screenWidth / 2 - jFrame.getWidth() / 2, screenHeight / 2 - jFrame.getHeight() / 2);  //位于屏幕中央
 
         jFrame.add(jLabel);
